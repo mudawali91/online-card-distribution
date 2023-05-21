@@ -16,8 +16,7 @@
 				'message' => 'Success',
 				'data' => $data,
 			];
-
-			echo json_encode($response);
+			print_json($response, 200);
 
 		} else {
 			$response = [
@@ -25,7 +24,7 @@
 				'message' => 'Invalid Action',
 				'data' => [],
 			];
-			echo json_encode($response);
+			print_json($response, 200);
 		}
 
 	} else {
@@ -34,6 +33,6 @@
 			'message' => 'Invalid Action',
 			'data' => [],
 		];
-		echo json_encode($response);
+		print_json($response, 200);
 	}
 ?>
