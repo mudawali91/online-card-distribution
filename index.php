@@ -5,8 +5,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Muda Wali - Tyrell System Programing Test">
-	<title>Tyrell System Programing Test | Q1</title>
+    <meta name="author" content="Muda Wali - Tyrell System Programming Test">
+	<title>Online Card Distribution</title>
 
 	<!-- Begin CSS -->
 	<link href="public/assets/css/bootstrap.min.css" rel="stylesheet">
