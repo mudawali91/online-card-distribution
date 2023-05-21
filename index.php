@@ -147,7 +147,7 @@
 						error_handling(response.message);
 					} else {
 						// handle server-side no response
-						error_handling('Server response fail. Please try again');
+						error_handling('Irregularity occurred');
 					}
 				},
 				error: function(e) {
