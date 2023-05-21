@@ -14,7 +14,7 @@
 			// start validate input request
 			$error_msg = '';
 
-			if ( empty($no_of_player) || filter_var($no_of_player, FILTER_VALIDATE_INT) === false || $no_of_player <= 0 ) {
+			if ( empty($no_of_player) || filter_var($no_of_player, FILTER_VALIDATE_INT) === false || is_digits($no_of_player) || $no_of_player <= 0 ) {
 				$error_msg = 'Input value does not exist or value is invalid';
 			}
 

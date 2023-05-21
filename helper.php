@@ -10,4 +10,8 @@
 		http_response_code($http_status);
 		echo json_encode($response);
 	}
+
+	function is_digits($value) {
+		return preg_match("/[^0-9]/", $value);
+	}
 ?>
