@@ -22,6 +22,10 @@
 		.display-none {
 			display: none;
 		}
+		.border.border-success.rounded.custom {
+			padding: 0.75rem 1.25rem;
+			background-color: #f8f9fa;
+		}
 	</style>
 	<!-- End CSS -->
 </head>
@@ -59,6 +63,10 @@
 						</div>
 					</div>
 				</form>
+
+				<hr />
+				<h6 class="card-title">Output:</h6>
+				<div id="div_output" class="border border-success rounded custom display-none"></div>
 			</div>
 		</div>
 
@@ -91,6 +99,8 @@
 			if ( error_msg != '' ) {
 				$('#validation_msg').text(error_msg);
 				$('#validation_msg').show();
+				$('#div_output').html('');
+				$('#div_output').hide();
 				return false;
 			} else {
 				return true;
@@ -100,6 +110,8 @@
 		function distribute_cards() {
 			let no_of_player = $('#no_of_player').val();
 
+			$('#div_output').html('');
+
 			$.ajax({
 				url: "Controller/BaseController.php",
 				type: "POST",
@@ -107,6 +119,24 @@
 				cache: false,
 				success: function(response) {
 					console.log('response', response);
+					if ( response.status == 1 ) {
+			            let player_card_list = '';
+			            if ( response.data.player_card_list_format != '' ) {
+			            	// display list of cards per player according row format
+				            $.each(response.data.player_card_list_format, function(key, val) {
+				            	player_card_list += val+"<br>";
+				            });
+
+				            $('#div_output').html(player_card_list);
+				            $('#div_output').show();
+			            }
+		            } else {
+		            	// handle validation error message from server-side
+		            	$('#validation_msg').text(response.message);
+						$('#validation_msg').show();
+						$('#div_output').html('');
+						$('#div_output').hide();
+		            }
 				},
 				error: function(e) {
 					console.log(e);

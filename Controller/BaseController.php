@@ -61,6 +61,9 @@
 			}
 			$data['player_card_list'] = $player_card_list;
 
+		    // print output according to require format
+		    $data['player_card_list_format'] = $card->print_output($player_card_list);
+
 			$response = [
 				'status' => 1,
 				'message' => 'Success',

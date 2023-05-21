@@ -30,5 +30,15 @@
 
 			return $data;
 		}
+
+		public function print_output($data) {
+			$output = [];
+
+			foreach ( $data as $key => $val ) {
+				$output[$key] = implode($val, ',').',';
+			}
+
+			return $output;	
+		}
 	}
 ?>
