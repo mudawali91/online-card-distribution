@@ -6,4 +6,6 @@
 	error_reporting(E_ALL);
 
 	date_default_timezone_set("Asia/Kuala_Lumpur");
+
+	include 'helper.php';
 ?>
