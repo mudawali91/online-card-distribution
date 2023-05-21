@@ -41,6 +41,26 @@
 			shuffle($card_arrangement);
 			$data['card_arrangement_shuffle'] = $card_arrangement;
 
+			// devide total card with total no of player to get total card per player
+			$total_card_per_player = $total_card/(int)$no_of_player;
+			// round total card per player in order to get nearest top integer
+			$total_card_per_player = ceil($total_card_per_player);
+			$data['total_card_per_player'] = $total_card_per_player;
+
+			// split cards based on chunk no of player in order to assign round robin turn
+			$card_split = array_chunk($card_arrangement, $no_of_player);
+			$data['card_split'] = $card_split;
+
+			$player_card_list = [];
+			// distribute and group cards to each player according to round robin turn
+			// if all card completely distributed, those player who not receive any more card during round robin turn will be assigned as empty card
+			foreach ( range(1, $no_of_player) as $np_key => $np_val ) {
+				foreach ( range(1, $total_card_per_player) as $cp_key => $cp_val ) {
+					$player_card_list['P'.($np_val)][] = ( isset($card_split[$cp_key][$np_key]) ? $card_split[$cp_key][$np_key] : '' );
+				}
+			}
+			$data['player_card_list'] = $player_card_list;
+
 			$response = [
 				'status' => 1,
 				'message' => 'Success',
