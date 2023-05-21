@@ -34,10 +34,12 @@
 			// initialize card object
 			$card = new CardController();
 
-			// $data['card_type'] = $card->get_card_type();
-			// $data['card_list'] = $card->get_card_list();
 			$data['card_arrangement'] = $card_arrangement = $card->get_card_arrangement();
 			$data['total_card'] = $total_card = count($card_arrangement);
+
+			// randomly shuffle cards
+			shuffle($card_arrangement);
+			$data['card_arrangement_shuffle'] = $card_arrangement;
 
 			$response = [
 				'status' => 1,
