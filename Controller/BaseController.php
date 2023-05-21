@@ -1,5 +1,7 @@
 <?php
 	include_once '../config.php';
+	require_once 'CardController.php';
+	use Controller\Card\CardController;
 
 	if ( isset($_POST['action']) ) {
 		if ( $_POST['action'] == 'distribute_cards' ) {
@@ -28,6 +30,12 @@
 				return false;
 			}
 			// end validate input request
+
+			// initialize card object
+			$card = new CardController();
+
+			$data['card_type'] = $card->get_card_type();
+			$data['card_list'] = $card->get_card_list();
 
 			$response = [
 				'status' => 1,
