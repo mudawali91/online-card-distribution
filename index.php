@@ -17,6 +17,9 @@
 		.card {
 			margin-top: 20px;
 		}
+		.display-none {
+			display: none;
+		}
 	</style>
 	<!-- End CSS -->
 </head>
@@ -40,6 +43,7 @@
 						<li>Greater than 53 are normal values and cards must be distributed to a number of people instead of having it as an error.</li>
 					</ol>
 				</p>
+				<div id="validation_msg" class="alert alert-danger display-none" role="alert"></div>
 				<form id="form_q1" name="form_q1" method="POST" action="">
 					<div class="form-row">
 						<div class="form-group col-md-6">
@@ -61,6 +65,52 @@
 	<!-- Begin JS -->
 	<script src="public/assets/js/vendor/jquery.min.js"></script>
 	<script src="public/assets/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+
+		function is_digits(value) {
+			// allow only digit from 0-9, disable from start with 0
+			let pattern = '^([0-9]|[1-9][0-9]{1,10})$';
+			return ( value.match(pattern) ? true : false );
+		}
+
+		function form_validation() {
+			let no_of_player = $('#no_of_player').val();
+			let error_msg = '';
+
+			// reset validation alert
+			$('#validation_msg').text(error_msg);
+			$('#validation_msg').hide();
+
+			if ( no_of_player == '' || is_digits(no_of_player) == false || parseInt(no_of_player) <= 0 ) {
+				error_msg = 'Input value does not exist or value is invalid';
+			}
+
+			// if error exist then display validation alert
+			if ( error_msg != '' ) {
+				$('#validation_msg').text(error_msg);
+				$('#validation_msg').show();
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		$(function() {
+
+			$('#form_q1').on('submit', function(e) {
+				e.preventDefault();
+				if ( form_validation() === true ) {
+					console.log('validation passed!');
+				}
+			});
+
+			$('.form-control').on('input', function(e) {
+				$('#validation_msg').hide();
+			});
+
+	  	});
+
+	</script>
 	<!-- End JS -->
 </body>
 </html>
