@@ -97,13 +97,32 @@
 			}
 		}
 
+		function distribute_cards() {
+			let no_of_player = $('#no_of_player').val();
+
+			$.ajax({
+				url: "Controller/BaseController.php",
+				type: "POST",
+				data: { 'action': 'distribute_cards', 'no_of_player' : no_of_player },
+				cache: false,
+				success: function(response) {
+					console.log('response', response);
+				},
+				error: function(e) {
+					console.log(e);
+				},
+				complete: function(response) {
+				},
+		    });
+		}
+
 		$(function() {
 
 			// disabled submit form by press enter
 			$('#btn_submit_q1').on('click', function(e) {
 				e.preventDefault();
 				if ( form_validation() === true ) {
-					console.log('validation passed!');
+					distribute_cards();
 				}
 			});
 
