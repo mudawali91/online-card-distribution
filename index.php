@@ -44,7 +44,7 @@
 					</ol>
 				</p>
 				<div id="validation_msg" class="alert alert-danger display-none" role="alert"></div>
-				<form id="form_q1" name="form_q1" method="POST" action="">
+				<form id="form_q1" name="form_q1" method="POST" action="javascript:void(0)">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label>Number of people</label>
@@ -53,7 +53,7 @@
 					</div>
 					<div class="form-group row">
 						<div class="col-sm-10">
-							<button type="submit" class="btn btn-primary btn-sm" id="btn_submit_q1">Submit</button>
+							<button type="button" class="btn btn-primary btn-sm" id="btn_submit_q1">Submit</button>
 						</div>
 					</div>
 				</form>
@@ -97,7 +97,8 @@
 
 		$(function() {
 
-			$('#form_q1').on('submit', function(e) {
+			// disabled submit form by press enter
+			$('#btn_submit_q1').on('click', function(e) {
 				e.preventDefault();
 				if ( form_validation() === true ) {
 					console.log('validation passed!');
