@@ -59,7 +59,10 @@
 					</div>
 					<div class="form-group row">
 						<div class="col-sm-10">
-							<button type="button" class="btn btn-primary btn-sm" id="btn_submit_q1">Submit</button>
+							<button type="button" class="btn btn-primary btn-sm" id="btn_submit_q1">
+								<span class="spinner-border spinner-border-sm text-light display-none" role="status" aria-hidden="true"></span>
+								Submit
+							</button>
 						</div>
 					</div>
 				</form>
@@ -110,6 +113,9 @@
 		function distribute_cards() {
 			let no_of_player = $('#no_of_player').val();
 
+			// show loading icon when request from server-side
+			$('#btn_submit_q1 .spinner-border').removeClass('display-none');
+			$('#btn_submit_q1').prop('disabled', true);
 			$('#div_output').html('');
 
 			$.ajax({
@@ -142,6 +148,9 @@
 					console.log(e);
 				},
 				complete: function(response) {
+					// hide loading icon once complete response from server-side
+					$('#btn_submit_q1 .spinner-border').addClass('display-none');
+					$('#btn_submit_q1').prop('disabled', false);
 				},
 		    });
 		}
