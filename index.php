@@ -33,7 +33,7 @@
 	
 	<div class="container">
 
-		<h3>A) Programming Test</h3>
+		<h3>A) Programming Test: Online Card Distribution</h3>
 		<div class="card">
 			<div class="card-header">
 				Theme: Playing cards will be given out to n(number) people
