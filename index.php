@@ -90,10 +90,10 @@
 			// when error is exist, what action/process to handle
 			// display alert box
 			$('#validation_msg').text(message);
-			$('#validation_msg').show();
+			$('#validation_msg').removeClass('display-none');
 			// hide output
 			$('#div_output').html('');
-			$('#div_output').hide();
+			$('#div_output').addClass('display-none');
 		}
 
 		function form_validation() {
@@ -101,8 +101,8 @@
 			let error_msg = '';
 
 			// reset validation alert
-			$('#validation_msg').text(error_msg);
-			$('#validation_msg').hide();
+			$('#validation_msg').text('');
+			$('#validation_msg').addClass('display-none');
 
 			if ( no_of_player == '' || is_digits(no_of_player) == false || parseInt(no_of_player) <= 0 ) {
 				error_msg = 'Input value does not exist or value is invalid';
@@ -131,7 +131,6 @@
 				data: { 'action': 'distribute_cards', 'no_of_player' : no_of_player },
 				cache: false,
 				success: function(response) {
-					console.log('response', response);
 					if ( response.status == 1 ) {
 			            let player_card_list = '';
 						if ( response.data.player_card_list_format != '' ) {
@@ -141,7 +140,7 @@
 							});
 
 							$('#div_output').html(player_card_list);
-							$('#div_output').show();
+							$('#div_output').removeClass('display-none');
 						} 
 					} else if ( response.status == 0 ) {
 						// handle validation error message from server-side
@@ -173,7 +172,7 @@
 			});
 
 			$('.form-control').on('input', function(e) {
-				$('#validation_msg').hide();
+				$('#validation_msg').addClass('display-none');
 			});
 
 	  	});
