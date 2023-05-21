@@ -2,6 +2,9 @@
 
 A programming test on randomly card distribution among the players.
 
+### Total Hour Spent
++- 11 Hours
+
 ## Theme
 Playing cards will be given out to n(number) people.
 
