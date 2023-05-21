@@ -8,6 +8,16 @@
 
 	<!-- Begin CSS -->
 	<link href="public/assets/css/bootstrap.min.css" rel="stylesheet">
+
+	<style>
+		.container {
+			margin-top: 30px;
+			margin-bottom: 20px;
+		}
+		.card {
+			margin-top: 20px;
+		}
+	</style>
 	<!-- End CSS -->
 </head>
 <body>
@@ -30,6 +40,19 @@
 						<li>Greater than 53 are normal values and cards must be distributed to a number of people instead of having it as an error.</li>
 					</ol>
 				</p>
+				<form id="form_q1" name="form_q1" method="POST" action="">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label>Number of people</label>
+							<input type="text" class="form-control form-control-sm" id="no_of_player" name="no_of_player"/>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-10">
+							<button type="submit" class="btn btn-primary btn-sm" id="btn_submit_q1">Submit</button>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 
