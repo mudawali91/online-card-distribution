@@ -86,6 +86,16 @@
 			return ( value.match(pattern) ? true : false );
 		}
 
+		function error_handling(message) {
+			// when error is exist, what action/process to handle
+			// display alert box
+			$('#validation_msg').text(message);
+			$('#validation_msg').show();
+			// hide output
+			$('#div_output').html('');
+			$('#div_output').hide();
+		}
+
 		function form_validation() {
 			let no_of_player = $('#no_of_player').val();
 			let error_msg = '';
@@ -100,10 +110,7 @@
 
 			// if error exist then display validation alert
 			if ( error_msg != '' ) {
-				$('#validation_msg').text(error_msg);
-				$('#validation_msg').show();
-				$('#div_output').html('');
-				$('#div_output').hide();
+				error_handling(error_msg);
 				return false;
 			} else {
 				return true;
@@ -127,22 +134,22 @@
 					console.log('response', response);
 					if ( response.status == 1 ) {
 			            let player_card_list = '';
-			            if ( response.data.player_card_list_format != '' ) {
-			            	// display list of cards per player according row format
-				            $.each(response.data.player_card_list_format, function(key, val) {
-				            	player_card_list += val+"<br>";
-				            });
+						if ( response.data.player_card_list_format != '' ) {
+							// display list of cards per player according row format
+							$.each(response.data.player_card_list_format, function(key, val) {
+								player_card_list += val+"<br>";
+							});
 
-				            $('#div_output').html(player_card_list);
-				            $('#div_output').show();
-			            }
-		            } else {
-		            	// handle validation error message from server-side
-		            	$('#validation_msg').text(response.message);
-						$('#validation_msg').show();
-						$('#div_output').html('');
-						$('#div_output').hide();
-		            }
+							$('#div_output').html(player_card_list);
+							$('#div_output').show();
+						} 
+					} else if ( response.status == 0 ) {
+						// handle validation error message from server-side
+						error_handling(response.message);
+					} else {
+						// handle server-side no response
+						error_handling('Server response fail. Please try again');
+					}
 				},
 				error: function(e) {
 					console.log(e);
