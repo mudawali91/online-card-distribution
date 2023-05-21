@@ -11,7 +11,6 @@
 			$data = [];
 
 			$no_of_player = ( isset($_POST['no_of_player']) ? $_POST['no_of_player'] : 0 );
-			$data['no_of_player'] = $no_of_player;
 
 			// start validate input request
 			$error_msg = '';
@@ -34,22 +33,19 @@
 			// initialize card object
 			$card = new CardController();
 
-			$data['card_arrangement'] = $card_arrangement = $card->get_card_arrangement();
-			$data['total_card'] = $total_card = count($card_arrangement);
+			$card_arrangement = $card->get_card_arrangement();
+			$total_card = count($card_arrangement);
 
 			// randomly shuffle cards
 			shuffle($card_arrangement);
-			$data['card_arrangement_shuffle'] = $card_arrangement;
 
 			// devide total card with total no of player to get total card per player
 			$total_card_per_player = $total_card/(int)$no_of_player;
 			// round total card per player in order to get nearest top integer
 			$total_card_per_player = ceil($total_card_per_player);
-			$data['total_card_per_player'] = $total_card_per_player;
 
 			// split cards based on chunk no of player in order to assign round robin turn
 			$card_split = array_chunk($card_arrangement, $no_of_player);
-			$data['card_split'] = $card_split;
 
 			$player_card_list = [];
 			// distribute and group cards to each player according to round robin turn
